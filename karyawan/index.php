@@ -268,7 +268,7 @@ include '../config/koneksi.php';
                                         $jml_halaman = ceil($jml / $batas);
                                         for ($i = 1; $i < $jml_halaman; $i++) {
                                             if ($i != $halaman) {
-                                                echo ""
+                                                echo "";
                                             } else {
                                             }
                                         }
