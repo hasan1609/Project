@@ -1,7 +1,39 @@
 <?php
 include '../config/koneksi.php';
-?>
+$batas = 4;
+$halaman = isset($_GET['halaman']) ? (int)$_GET['halaman'] : 1;
+$halaman_awal = ($halaman > 1) ? ($halaman * $batas) - $batas : 0;
 
+$previous = $halaman - 1;
+$next = $halaman + 1;
+
+$data = mysqli_query($koneski, "SELECT * FROM karyawan");
+$jumlah_data = mysqli_num_rows($data);
+$total_halaman = ceil($jumlah_data / $batas);
+
+// membatasi tampilan page
+$jumlah_page = 2;
+if ($halaman_awal > $jumlah_page) {
+    $start_no = $halaman_ - $jumlah_page;
+} else {
+    $start_no = 1;
+}
+
+if ($halaman < $jumlah_data - $jumlah_page) {
+    $end_no = $halaman + $jumlah_page;
+} else {
+    $end_no = $jumlah_data;
+}
+
+if (isset($_POST['cari'])) {
+    $cari = $_POST['nama'];
+    $filter = mysqli_real_escape_string($koneski, $_POST['jabatan']);
+    $query = mysqli_query($koneski, "SELECT * FROM karyawan INNER JOIN jabatan ON karyawan.kd_jabatan = jabatan.kd_jabatan WHERE nama like '%$cari%' OR karyawan.kd_jabatan = '$filter'");
+} else {
+    $query = mysqli_query($koneski, "SELECT * FROM karyawan INNER JOIN jabatan ON karyawan.kd_jabatan = jabatan.kd_jabatan");
+}
+$no = 1 + $halaman_awal;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,7 +80,7 @@ include '../config/koneksi.php';
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="../dashboard/index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -83,7 +115,7 @@ include '../config/koneksi.php';
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-fw fa-calendar"></i>
                     <span>Absensi</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -95,7 +127,7 @@ include '../config/koneksi.php';
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../rekap/index.php">
-                    <i class="fas fa-fw fa-users"></i>
+                    <i class="fas fa-fw fa-print"></i>
                     <span>Rekap Absen</span></a>
             </li>
 
@@ -178,34 +210,10 @@ include '../config/koneksi.php';
                             </h4>
                         </div>
                         <div class="card-body">
-                            <form class="" method="post" enctype="multipart/form-data">
-                                <div class="row mb-4">
-                                    <div class="col-lg-6">
-                                        <div class="form-group input-group">
-                                            <select class="form-control" aria-label="form-select-sm example" name="jabatan">
-                                                <option>----Pilih Jabatan----</option>
-                                                <?php
-                                                $data = mysqli_query($koneski, "SELECT * FROM jabatan");
-                                                while ($value = mysqli_fetch_array($data)) {
-                                                ?>
-                                                    <option value="<?= $value['kd_jabatan']; ?>"><?= $value['nama_jabatan']; ?></option>
-                                                <?php } ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group input-group">
-                                            <input type="text" class="form-control form-control-user" id="nama" name="nama" placeholder="Masukkan Nama">
-                                        </div>
-                                        <div class="col-xs-3">
-                                            <input class="btn btn-sm btn-outline-primary float-right" type="submit" name="Cari" value="Cari">
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
+
 
                             <div class="table-responsive">
-                                <table class="table table-bordered" width="100%">
+                                <table class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -217,73 +225,32 @@ include '../config/koneksi.php';
                                             <th>Opsi</th>
                                         </tr>
                                     </thead>
-                                    <?php
-                                    $batas = 2;
-                                    $halaman = @$_GET['halaman'];
-                                    if (empty($halaman)) {
-                                        $posisi = 0;
-                                        $halaman = 1;
-                                    } else {
-                                        $posisi = ($halaman - 1) * $batas;
-                                    }
-                                    $no = 1;
-                                    if (isset($_POST['Cari'])) {
-                                        $filter = mysqli_real_escape_string($koneski, $_POST['jabatan']);
-                                        $query = mysqli_query($koneski, "SELECT * FROM karyawan INNER JOIN jabatan ON karyawan.kd_jabatan = jabatan.kd_jabatan WHERE nama like '%$_POST[nama]%' AND karyawan.kd_jabatan = '$filter' ");
-                                    } else {
-                                        $query = mysqli_query($koneski, "SELECT * FROM karyawan INNER JOIN jabatan ON karyawan.kd_jabatan = jabatan.kd_jabatan LIMIT $posisi, $batas");
-                                        $count = "SELECT * FROM karyawan";
-                                        $no = $posisi + 1;
-                                    }
-                                    while ($value = mysqli_fetch_array($query)) {
-                                    ?>
-                                        <tbody>
-                                            <td><?= $no++; ?></td>
-                                            <td><img src="../Image/<?= $value['foto']; ?>" style="width: 100px;"></td>
-                                            <td><?= $value['nik']; ?></td>
-                                            <td><?= $value['nama']; ?></td>
-                                            <td><?= $value['alamat']; ?></td>
-                                            <td><?= $value['nama_jabatan']; ?></td>
-                                            <td>
-                                                <a href="detail.php?nik=<?= $value['nik']; ?>" class="btn btn-primary btn-circle btn-sm">
-                                                    <i class="fa fa-eye"></i>
-                                                </a>
-                                                <a href="edit.php?id=<?= $value['id_karyawan']; ?>" class="btn btn-info btn-circle btn-sm">
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a href="delete.php?id=<?= $value['id_karyawan']; ?>" class="btn btn-danger btn-circle btn-sm" onclick="return confirm('Yakin ingin menghapus ?')">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
-                                            </td>
-                                        </tbody>
-                                    <?php
-                                    }
-                                    ?>
-                                </table>
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination justify-content-end">
 
-                                        <?php
-                                        $jml = mysqli_num_rows(mysqli_query($koneski, $count));
-                                        $jml_halaman = ceil($jml / $batas);
-                                        for ($i = 1; $i < $jml_halaman; $i++) {
-                                            if ($i != $halaman) {
-                                                echo "";
-                                            } else {
-                                            }
-                                        }
+                                    <tbody>
+                                        <?php while ($value = mysqli_fetch_array($query)) {
                                         ?>
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">Next</a>
-                                        </li>
-                                    </ul>
-                                </nav>
+                                            <tr>
+                                                <td><?= $no++; ?></td>
+                                                <td><img src="../Image/<?= $value['foto']; ?>" style="width: 100px;"></td>
+                                                <td><?= $value['nik']; ?></td>
+                                                <td><?= $value['nama']; ?></td>
+                                                <td><?= $value['alamat']; ?></td>
+                                                <td><?= $value['nama_jabatan']; ?></td>
+                                                <td>
+                                                    <a href="detail.php?nik=<?= $value['nik']; ?>" class="btn btn-primary btn-circle btn-sm">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a>
+                                                    <a href="edit.php?id=<?= $value['id_karyawan']; ?>" class="btn btn-info btn-circle btn-sm">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <a href="delete.php?id=<?= $value['id_karyawan']; ?>" class="btn btn-danger btn-circle btn-sm" onclick="return confirm('Yakin ingin menghapus ?')">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

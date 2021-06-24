@@ -32,14 +32,7 @@
     $keterangan_izin = 0;
     $keterangan_hadir = 0;
     //pencarian data
-    if (isset($_GET['carinama'])) {
-        $cari_nama = $_GET['nama'];
-        $cari_bulan = $_GET['bulan'];
-        $query_tampil = mysqli_query($koneski, "SELECT * FROM karyawan WHERE nama like '%$cari_nama%' ORDER BY nama");
-    } else {
-        // query tampil
-        $query_tampil = mysqli_query($koneski, "SELECT * FROM karyawan");
-    }
+
     ?>
 
     <!-- Page Wrapper -->
@@ -61,7 +54,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="../dashboard/index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -96,7 +89,7 @@
 
             <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-fw fa-calendar"></i>
                     <span>Absensi</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -108,7 +101,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../rekap/index.php">
-                    <i class="fas fa-fw fa-users"></i>
+                    <i class="fas fa-fw fa-print"></i>
                     <span>Rekap Absen</span></a>
             </li>
 
@@ -195,11 +188,11 @@
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="form-group">
-                                            <select class="form-control" aria-label="form-select-sm example" name="jabatan">
+                                            <select class="form-control" aria-label="form-select-sm example" name="jabatan" required>
                                                 <option>----Pilih Jabatan----</option>
                                                 <?php
-                                                $data = mysqli_query($koneski, "SELECT * FROM jabatan");
-                                                while ($value = mysqli_fetch_array($data)) {
+                                                $query = mysqli_query($koneski, "SELECT * FROM jabatan");
+                                                while ($value = mysqli_fetch_array($query)) {
                                                 ?>
                                                     <option value="<?= $value['kd_jabatan']; ?>"><?= $value['nama_jabatan']; ?></option>
                                                 <?php } ?>
@@ -240,24 +233,35 @@
                     </div>
 
                     <hr>
-
+                    <?php
+                    if (isset($_GET['carinama'])) {
+                        $cari_nama = $_GET['nama'];
+                        $cari_bulan = $_GET['bulan'];
+                        $filter = $_GET['jabatan'];
+                        $query_tampil = mysqli_query($koneski, "SELECT * FROM karyawan INNER JOIN jabatan ON karyawan.kd_jabatan = jabatan.kd_jabatan WHERE jabatan.kd_jabatan='$_GET[jabatan]' OR nama = '$cari_nama' ORDER BY nama ASC");
+                    } else {
+                        // query tampil
+                        $query_tampil = mysqli_query($koneski, "SELECT * FROM karyawan INNER JOIN jabatan ON karyawan.kd_jabatan = jabatan.kd_jabatan ORDER BY jabatan.kd_jabatan ASC");
+                    }
+                    ?>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <?php if (isset($_GET['carinama'])) { ?>
                                 <h5><?php echo "$_GET[bulan]-$_GET[tahun]"; ?></h5>
                             <?php } else { ?>
-                                <h5><?php echo date('m-y'); ?></h5>
+                                <h5><?php echo date('F-y'); ?></h5>
                             <?PHP } ?>
                         </div>
                         <div class="card-body">
                             <div class="widget-content">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered table-striped with-check">
+                                    <table class="table table-bordered table-striped with-check" id="dataTable">
                                         <thead>
                                             <tr>
-                                                <th rowspan='2'><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox" /></th>
+                                                <th rowspan="2">No</th>
                                                 <th rowspan='2'>Nama</th>
+                                                <th rowspan="2">Jabatan</th>
                                                 <th rowspan='2'>L/P</th>
                                                 <?php for ($tanggal_table = 1; $tanggal_table <= 31; $tanggal_table++) {
                                                     echo "<th rowspan='2'>$tanggal_table</th>";
@@ -279,8 +283,9 @@
                                                     $jk = "P";
                                                 } ?>
                                                 <tr>
-                                                    <td><input type="checkbox" name="id_karyawan[]" value="<?PHP echo $data['id_karyawan']; ?>" /></td>
+                                                    <td><?php echo $no++; ?></td>
                                                     <td><?php echo $data['nama']; ?></td>
+                                                    <td><?php echo $data['nama_jabatan'] ?></td>
                                                     <td><?php echo $jk ?></td>
                                                     <?php
                                                     //perulangan kehadiran sesuai tanggal

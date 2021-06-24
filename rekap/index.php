@@ -54,7 +54,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="../dashboard/index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -89,7 +89,7 @@
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-fw fa-calendar"></i>
                     <span>Absensi</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -101,7 +101,7 @@
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="index.php">
-                    <i class="fas fa-fw fa-users"></i>
+                    <i class="fas fa-fw fa-print"></i>
                     <span>Rekap Absen</span></a>
             </li>
 
@@ -218,7 +218,7 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-3">
-                                    <input class="btn btn-primary" type="submit" name="carinama">
+                                    <input class="btn btn-primary" type="submit" name="cari">
                                 </div>
                             </form>
                         </div>
@@ -227,7 +227,7 @@
 
                     <hr>
 
-                    <?php if (isset($_GET['carinama'])) { ?>
+                    <?php if (isset($_GET['cari'])) { ?>
                         <div class="card shadow-4">
                             <div class="card-header py-3">
                                 <h6 class="m-0 font-weight-bold text-primary">Data Absensi</h6>
@@ -244,13 +244,13 @@
                                     <tbody>
                                         <tr class="odd gradeX">
                                             <?php
-                                            $query_kelas = mysqli_query($koneski, "SELECT * FROM jabatan WHERE kd_jabatan='$_GET[jabatan]'");
-                                            while ($data_kelas = mysqli_fetch_array($query_kelas)) {
+                                            $query_jabatan = mysqli_query($koneski, "SELECT * FROM jabatan WHERE kd_jabatan='$_GET[jabatan]'");
+                                            while ($data_jabatan = mysqli_fetch_array($query_jabatan)) {
                                             ?>
                                                 <td><?php echo  "$_GET[tahun]-$_GET[bulan]"; ?></td>
-                                                <td><?= $data_kelas['nama_jabatan']; ?></td>
+                                                <td><?= $data_jabatan['nama_jabatan']; ?></td>
                                                 <td>
-                                                    <a href="report.php?bulan=<?php echo "$_GET[bulan]&tahun=$_GET[tahun]&kd_jabatan=$_GET[jabatan]"; ?>" target="_blank">
+                                                    <a href="cek_rekap.php?bulan=<?php echo "$_GET[bulan]&tahun=$_GET[tahun]&jabatan=$_GET[jabatan]"; ?>" target="_blank">
                                                         <i class="fa fa-print"></i> PDF</a>
                                                 <?php
                                             } ?>

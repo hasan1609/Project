@@ -44,7 +44,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="../dashboard/index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -79,19 +79,19 @@
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-fw fa-calendar"></i>
                     <span>Absensi</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="../absensi/index.php">Absensi Harian</a>
-                        <a class="collapse-item" href="../absensi/cek_absen.php">Master Absensi</a>
+                        <a class="collapse-item" href="../absensi/data-index.php">Master Absensi</a>
                     </div>
                 </div>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../rekap/index.php">
-                    <i class="fas fa-fw fa-users"></i>
+                    <i class="fas fa-fw fa-print"></i>
                     <span>Rekap Absen</span></a>
             </li>
 
@@ -189,19 +189,21 @@
                                         $data = mysqli_query($koneski, "SELECT * FROM jabatan");
                                         while ($value =  mysqli_fetch_array($data)) {
                                         ?>
-                                            <td><?php echo $no++; ?></td>
-                                            <td><?php echo $value['kd_jabatan']; ?></td>
-                                            <td><?php echo $value['nama_jabatan']; ?></td>
-                                            <td>
-                                                <a href="edit.php?id=<?= $value['kd_jabatan']; ?>" class="btn btn-info btn-circle btn-sm">
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a href="delete.php?id=<?= $value['kd_jabatan']; ?>" class="btn btn-danger btn-circle btn-sm">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
-                                            </td>
+                                            <tr>
+                                                <td><?php echo $no++; ?></td>
+                                                <td><?php echo $value['kd_jabatan']; ?></td>
+                                                <td><?php echo $value['nama_jabatan']; ?></td>
+                                                <td>
+                                                    <a href="edit.php?id=<?= $value['kd_jabatan']; ?>" class="btn btn-info btn-circle btn-sm">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <a href="delete.php?id=<?= $value['kd_jabatan']; ?>" class="btn btn-danger btn-circle btn-sm">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
                                     </tbody>
-                                <?php } ?>
                                 </table>
                             </div>
                         </div>
