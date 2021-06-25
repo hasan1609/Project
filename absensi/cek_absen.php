@@ -18,5 +18,5 @@ if (isset($_POST['upload'])) {
         }
     }
     echo "<script>window.alert('Proses Absensi Selesai')
-    window.location='data-index.php'</script>";
+    window.location='index.php'</script>";
 }

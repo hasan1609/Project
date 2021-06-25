@@ -172,7 +172,7 @@
                         <div class="card-header py-3">
                         </div>
                         <div class="card-body">
-                            <form class="" method="post" enctype="multipart/form-data">
+                            <form class="" method="get" enctype="multipart/form-data">
                                 <div class="form-group input-group">
                                     <span class="input-group-text">
                                         Jabatan
@@ -203,35 +203,54 @@
                                 <div class="card-body">
                                     <form action="cek_absen.php" method="post">
                                         <div class="table-responsive">
-                                            <table class="table table-bordered table-striped with-check">
+                                            <table class="table table-bordered table-striped with-check" id="dataTable">
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
                                                         <th>Nama</th>
                                                         <th>Jabatan</th>
                                                         <th>Absen <input type="checkbox" id="checkbox" name="title-table-checkbox" onclick="checkAll(this)" /></th>
+                                                        <th>Hari Ini</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <?php
-                                                    if (isset($_POST['Cari'])) {
-                                                        $date = date("yy-m-d");
-                                                        $filter = mysqli_real_escape_string($koneski, $_POST['jabatan']);
-                                                        $query = "SELECT * FROM karyawan INNER JOIN jabatan ON karyawan.kd_jabatan = jabatan.kd_jabatan WHERE karyawan.kd_jabatan = '$filter'";
-                                                        $data = mysqli_query($koneski, $query);
+                                                    if (isset($_GET['Cari'])) {
+                                                        $query = "SELECT * FROM karyawan INNER JOIN jabatan ON karyawan.kd_jabatan = jabatan.kd_jabatan WHERE jabatan.kd_jabatan = '$_GET[jabatan]';";
+                                                    } else {
+                                                        $query = "SELECT * FROM karyawan INNER JOIN jabatan ON karyawan.kd_jabatan = jabatan.kd_jabatan ORDER BY jabatan.kd_jabatan ASC";
                                                     }
                                                     $no = 1;
+                                                    $date = date("y-m-d");
+                                                    $data = mysqli_query($koneski, $query);
                                                     while ($value = mysqli_fetch_array($data)) {
                                                     ?>
-                                                        <input type="hidden" value="<?= $value['kd_jabatan']; ?>" name="kd_jabatan">
-                                                        <td><?= $no++; ?></td>
-                                                        <td><?= $value['nama']; ?></td>
-                                                        <td><?= $value['nama_jabatan']; ?></td>
-                                                        <td><input type="checkbox" id="checkbox" name="id_karyawan[]" value="<?= $value['id_karyawan']; ?>" /></td>
+                                                        <tr>
+                                                            <input type="hidden" value="<?= $value['kd_jabatan']; ?>" name="kd_jabatan">
+                                                            <td><?= $no++; ?></td>
+                                                            <td><?= $value['nama']; ?></td>
+                                                            <td><?= $value['nama_jabatan']; ?></td>
+                                                            <td><input type="checkbox" id="checkbox" name="id_karyawan[]" value="<?= $value['id_karyawan']; ?>" /></td>
+                                                            <?php $query_tampil_tanggal = mysqli_query($koneski, "SELECT * FROM absensi WHERE id_karyawan=$value[id_karyawan]
+                                                                and tgl_absen like '%$date%' ORDER BY tgl_absen ASC;");
+                                                            while ($data_tanggal = mysqli_fetch_array($query_tampil_tanggal)) {
+                                                            ?>
+                                                                <td>
+                                                                    <?php
+                                                                    if ($data_tanggal['keterangan'] == 'h') {
+                                                                        echo "Hadir";
+                                                                    } else if ($data_tanggal['keterangan'] == 'a') {
+                                                                        echo "Alpha";;
+                                                                    } else if ($data_tanggal['keterangan'] == 'i') {
+                                                                        echo "Izin";;
+                                                                    } else if ($data_tanggal['keterangan'] == 'l') {
+                                                                        echo "Libur";;
+                                                                    }  ?>
+                                                                </td>
+                                                            <?php } ?>
+                                                        </tr>
+                                                    <?php } ?>
                                                 </tbody>
-                                            <?php
-                                                    }
-                                            ?>
                                             </table>
                                         </div>
                                 </div>
