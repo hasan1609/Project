@@ -134,8 +134,8 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="../admin/index.php">
-                                <i class="fas fa-cog fa-fw text-gray-600"></i>
-                                <span class="font-weight-bold text-gray-600"> Admin</span>
+                                <i class="fas fa-plus fa-faw text-gray-600"></i>
+                                <span class="font-weight-bold text-gray-600"> &ensp;Admin </span>
                             </a>
                         </li>
 
@@ -144,8 +144,7 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="../Image/default.png">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
