@@ -1,4 +1,5 @@
 <?php
+session_start();
 include '../config/koneksi.php';
 
 $id = $_POST['id'];
@@ -27,9 +28,13 @@ if (isset($_POST['upload'])) {
             if ($size < 5000000) {
                 unlink("../Image/" . $foto_lama);
                 move_uploaded_file($folder, "../Image/" . $rename);
-                mysqli_query($koneski, "UPDATE karyawan SET kd_jabatan='$_POST[jabatan]', nik='$_POST[nik]', nama='$_POST[nama]', ttl='$_POST[ttl]', alamat='$_POST[alamat]',notlp='$_POST[tlp]', agama='$_POST[agama]', jk='$_POST[jk]', tgl_pendaftaran='$_POST[daftar]', foto ='$rename' WHERE id_karyawan='$id'");
-                // echo "<script>window.alert('Berhasil Menambahkan Data')
-                // window.location='index.php'</script>";
+                $query = mysqli_query($koneski, "UPDATE karyawan SET kd_jabatan='$_POST[jabatan]', nik='$_POST[nik]', nama='$_POST[nama]', ttl='$_POST[ttl]', alamat='$_POST[alamat]',notlp='$_POST[tlp]', agama='$_POST[agama]', jk='$_POST[jk]', tgl_pendaftaran='$_POST[daftar]', foto ='$rename' WHERE id_karyawan='$id'");
+                if ($query) {
+                    $_SESSION['status'] = "Data Berhasil diubah";
+                    header('location: index.php');
+                } else {
+                    echo "Data Gagal Ditambahkan";
+                }
             } else {
                 echo '<script>alert("Ukuran Gambar Terlalu Besar")</script>';
             }
@@ -37,6 +42,12 @@ if (isset($_POST['upload'])) {
             echo '<script>alert("Tidak Sesuai Image File")</script>';
         }
     } else {
-        mysqli_query($koneski, "UPDATE karyawan SET kd_jabatan='$_POST[jabatan]', nik='$_POST[nik]', nama='$_POST[nama]', ttl='$_POST[ttl]', alamat='$_POST[alamat]',notlp='$_POST[tlp]', agama='$_POST[agama]', jk='$_POST[jk]', tgl_pendaftaran='$_POST[daftar]' WHERE id_karyawan='$id'");
+        $query = mysqli_query($koneski, "UPDATE karyawan SET kd_jabatan='$_POST[jabatan]', nik='$_POST[nik]', nama='$_POST[nama]', ttl='$_POST[ttl]', alamat='$_POST[alamat]',notlp='$_POST[tlp]', agama='$_POST[agama]', jk='$_POST[jk]', tgl_pendaftaran='$_POST[daftar]' WHERE id_karyawan='$id'");
+        if ($query) {
+            $_SESSION['status'] = "Data Berhasil diubah";
+            header('location: index.php');
+        } else {
+            echo "Data Gagal Ditambahkan";
+        }
     }
 }

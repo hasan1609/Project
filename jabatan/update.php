@@ -1,12 +1,19 @@
  <?php
+  session_start();
+  $header = 'jabatan';
+  include "../config/koneksi.php";
 
-   include "../config/koneksi.php";
+  $kd = $_POST['kd-jabatan'];
+  $nama = $_POST['nama'];
+  if (isset($_POST['upload'])) {
 
-   $kd = $_POST['kd-jabatan'];
-   $nama = $_POST['nama'];
+    $query = mysqli_query($koneski, "UPDATE jabatan SET nama_jabatan ='$nama' WHERE kd_jabatan='$kd'");
 
-   mysqli_query($koneski, "UPDATE jabatan SET nama_jabatan ='$nama' WHERE kd_jabatan='$kd'");
-
-   echo "<script>window.alert('Data Berhasil Diubah')
-   window.location='index.php'</script>";
-   ?>
+    if ($query) {
+      $_SESSION['status'] = "Data Berhasil Diubah";
+      header('location: index.php');
+    } else {
+      echo "Data Gagal Ditambahkan";
+    }
+  }
+  ?>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 include '../config/koneksi.php';
 $jabatan = $_POST['jabatan'];
 $nik = $_POST['nik'];
@@ -26,9 +27,13 @@ if (isset($_POST['upload'])) {
         if (in_array($ext_Gambar, $ext)) {
             if ($size < 5000000) {
                 move_uploaded_file($folder, "../Image/" . $rename);
-                mysqli_query($koneski, "INSERT into karyawan(kd_jabatan, nik, nama, ttl, alamat, notlp, agama, jk, tgl_pendaftaran, foto) VALUES ('$jabatan', '$nik', '$nama', '$ttl', '$alamat', '$tlp', '$agama', '$jk', '$daftar', '$rename')");
-                echo "<script>window.alert('Berhasil Menambahkan Data')
-                window.location='index.php'</script>";
+                $query = mysqli_query($koneski, "INSERT into karyawan(kd_jabatan, nik, nama, ttl, alamat, notlp, agama, jk, tgl_pendaftaran, foto) VALUES ('$jabatan', '$nik', '$nama', '$ttl', '$alamat', '$tlp', '$agama', '$jk', '$daftar', '$rename')");
+                if ($query) {
+                    $_SESSION['status'] = "Data Berhasil ditambahkan";
+                    header('location: index.php');
+                } else {
+                    echo "Data Gagal Ditambahkan";
+                }
             } else {
                 echo '<script>alert("Ukuran Gambar Terlalu Besar")</script>';
             }

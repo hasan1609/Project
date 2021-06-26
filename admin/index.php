@@ -1,6 +1,5 @@
 <?php
 session_start();
-$header = 'jabatan';
 include '../layout/header.php';
 ?>
 
@@ -8,15 +7,13 @@ include '../layout/header.php';
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Jabatan</h1>
+    <h1 class="h3 mb-2 text-gray-800">Data Admin</h1>
 
-    <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Data Jabatan</h6>
         </div>
         <div class="card-body">
-            <a class="btn btn-primary" href="tambah.php"><i class="fa fa-user-plus" aria-hidden="true"></i> Tambah Jabatan</a>
+            <a class="btn btn-primary" href="tambah.php"><i class=" fa fa-user-plus" aria-hidden="true"></i> Tambah Admin</a>
             <br><br>
             <?php
             if (isset($_SESSION['status'])) { ?>
@@ -35,8 +32,8 @@ include '../layout/header.php';
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Kode jabatan</th>
-                            <th>Nama Jabatan</th>
+                            <th>Nama</th>
+                            <th>Username</th>
                             <th>Opsi</th>
                         </tr>
                     </thead>
@@ -44,18 +41,15 @@ include '../layout/header.php';
                         <?php
                         include '../config/koneksi.php';
                         $no = 1;
-                        $data = mysqli_query($koneski, "SELECT * FROM jabatan");
+                        $data = mysqli_query($koneski, "SELECT * FROM admin");
                         while ($value =  mysqli_fetch_array($data)) {
                         ?>
                             <tr>
                                 <td><?php echo $no++; ?></td>
-                                <td><?php echo $value['kd_jabatan']; ?></td>
-                                <td><?php echo $value['nama_jabatan']; ?></td>
+                                <td><?php echo $value['nama']; ?></td>
+                                <td><?php echo $value['username']; ?></td>
                                 <td>
-                                    <a href="edit.php?id=<?= $value['kd_jabatan']; ?>" class="btn btn-info btn-circle btn-sm">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                    <a href="delete.php?id=<?= $value['kd_jabatan']; ?>" class="btn btn-danger btn-circle btn-sm" onclick="return confirm('Yakin ingin menghapus ?')">
+                                    <a href="delete.php?id=<?= $value['id_admin']; ?>" class="btn btn-danger btn-circle btn-sm" onclick="return confirm('Yakin ingin menghapus ?')">
                                         <i class=" fas fa-trash"></i>
                                     </a>
                                 </td>
@@ -67,7 +61,10 @@ include '../layout/header.php';
         </div>
     </div>
 
-</div>
-<!-- /.container-fluid -->
 
-<?php include '../layout/footer.php' ?>
+    <!-- DataTales Example -->
+</div>
+
+
+<?php
+include '../layout/footer.php' ?>
