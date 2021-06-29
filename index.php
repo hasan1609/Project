@@ -37,18 +37,38 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Welcome</h1>
                                     </div>
-                                    <form class="user">
+                                    <?php
+                                    if (isset($_GET['pesan'])) {
+                                        if ($_GET['pesan'] == "gagal") {
+                                            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                <strong>Login Gagal !</strong> Harap Periksa username dan password
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>';
+                                        } else if ($_GET['pesan'] == "logout") {
+                                            echo '<div class="alert alert-info alert-dismissible fade show" role="alert">
+                                                <strong>Anda Berhasil Logout</strong>
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>';
+                                        } else if ($_GET['pesan'] == "belum_login") {
+                                            echo "Anda harus login untuk mengakses halaman admin";
+                                        }
+                                    }
+                                    ?>
+                                    <form class="user" method="post" action="cek_login.php">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                                            <input type="text" class="form-control form-control-user" id="username" name="username" aria-describedby="emailHelp" placeholder="Enter Email Address...">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                                            <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password">
                                         </div>
-                                        <a href="dashboard/index.php" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </a>
+                                        <input class="btn btn-primary btn-user btn-block" type="submit" name="login" value="Login">
+                                        </input>
                                         <hr>
                                     </form>
                                     <hr>
@@ -73,6 +93,21 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            window.setTimeout(function() {
+                $(".alert").fadeTo(500, 0).slideUp(500, function() {
+                    $(this).remove();
+                });
+            }, 4000);
+        });
+    </script>
 
 </body>
 

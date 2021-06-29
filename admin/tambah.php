@@ -11,7 +11,7 @@ include '../layout/header.php'; ?>
         <div class="card-header py-3">
         </div>
         <div class="card-body">
-            <form action="proses.php?admin=tambah" method="post">
+            <form action="proses.php" method="post">
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Nama</label>
                     <div class="col-sm-10">

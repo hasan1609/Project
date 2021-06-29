@@ -1,6 +1,7 @@
 <?php
 $header = 'absensi';
 include '../config/koneksi.php';
+include 'akses.php';
 include '../layout/header.php';
 $keterangan_alpha = 0;
 $keterangan_izin = 0;

@@ -1,5 +1,7 @@
 <?php
 $header = 'rekap';
+include '../config/koneksi.php';
+include 'akses.php';
 include '../layout/header.php';
 ?>
 <!-- Begin Page Content -->

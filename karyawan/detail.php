@@ -1,5 +1,7 @@
 <?php
 $header = 'karyawan';
+include '../config/koneksi.php';
+include 'akses.php';
 include '../layout/header.php' ?>
 <!-- Begin Page Content -->
 <div class="container-fluid">
@@ -17,7 +19,6 @@ include '../layout/header.php' ?>
             <a class="btn btn-primary" href="index.php">Back</a>
             <br><br>
             <?php
-            include '../config/koneksi.php';
             if (isset($_GET['nik'])) {
                 $nik = $_GET['nik'];
             } else {

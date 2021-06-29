@@ -2,6 +2,7 @@
 session_start();
 $header = 'karyawan';
 include '../config/koneksi.php';
+include 'akses.php';
 include '../layout/header.php';
 $batas = 4;
 $halaman = isset($_GET['halaman']) ? (int)$_GET['halaman'] : 1;

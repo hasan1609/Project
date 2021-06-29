@@ -1,6 +1,7 @@
 <?php
 $header = 'karyawan';
 include "../config/koneksi.php";
+include 'akses.php';
 include '../layout/header.php';
 ?>
 <!-- Begin Page Content -->

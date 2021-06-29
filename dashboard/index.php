@@ -1,5 +1,8 @@
 <?php
+session_start();
 $header = "dashboard";
+include '../config/koneksi.php';
+include 'akses.php';
 include '../layout/header.php';
 ?>
 <!-- Begin Page Content -->

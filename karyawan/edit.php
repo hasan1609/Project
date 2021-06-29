@@ -1,6 +1,7 @@
 <?php
 $header = 'karyawan';
 include '../config/koneksi.php';
+include 'akses.php';
 include '../layout/header.php'
 ?>
 <!-- Begin Page Content -->
@@ -17,7 +18,6 @@ include '../layout/header.php'
         <div class="card-body">
             <form action="cek_edit.php" method="post" enctype="multipart/form-data">
                 <?php
-                include '../config/koneksi.php';
                 if (isset($_GET['id'])) {
                     $id = $_GET['id'];
                 } else {

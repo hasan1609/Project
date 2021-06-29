@@ -41,7 +41,7 @@ include '../layout/header.php';
                         <?php
                         include '../config/koneksi.php';
                         $no = 1;
-                        $data = mysqli_query($koneski, "SELECT * FROM admin");
+                        $data = mysqli_query($koneski, "SELECT * FROM user");
                         while ($value =  mysqli_fetch_array($data)) {
                         ?>
                             <tr>
@@ -49,7 +49,7 @@ include '../layout/header.php';
                                 <td><?php echo $value['nama']; ?></td>
                                 <td><?php echo $value['username']; ?></td>
                                 <td>
-                                    <a href="delete.php?id=<?= $value['id_admin']; ?>" class="btn btn-danger btn-circle btn-sm" onclick="return confirm('Yakin ingin menghapus ?')">
+                                    <a href="delete.php?id=<?= $value['id_user']; ?>" class="btn btn-danger btn-circle btn-sm" onclick="return confirm('Yakin ingin menghapus ?')">
                                         <i class=" fas fa-trash"></i>
                                     </a>
                                 </td>

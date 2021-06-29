@@ -152,7 +152,7 @@
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
 
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <a class="dropdown-item" href="../logout.php?id=<?= $_SESSION['id_user']; ?>">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Logout
                                     </a>

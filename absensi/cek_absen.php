@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "../config/koneksi.php";
+include 'akses.php';
 
 if (isset($_POST['upload'])) {
     if ($_POST['aksi'] == "absen_baru") {
