@@ -50,7 +50,7 @@ include '../layout/header.php';
                             $count2 = mysqli_num_rows($query2);
                             ?>
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                Jumlah Karyawan</div>
+                                Jumlah Seluruh Karyawan</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $count2; ?></div>
                         </div>
                         <div class="col-auto">
@@ -77,7 +77,7 @@ include '../layout/header.php';
                                 </div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
                                     <?php
-                                    $query_all = mysqli_query($koneski, "SELECT * FROM karyawan INNER JOIN jabatan ON karyawan.kd_jabatan = jabatan.kd_jabatan WHERE karyawan.kd_jabatan = '$_GET[kd]'");
+                                    $query_all = mysqli_query($koneski, "SELECT * FROM karyawan INNER JOIN jabatan ON karyawan.kd_jabatan = jabatan.kd_jabatan WHERE karyawan.kd_jabatan = '$data[kd_jabatan]'");
                                     $count_all = mysqli_num_rows($query_all);
                                     echo "$count_all";
                                     ?>

@@ -1,5 +1,4 @@
     <?php
-    session_start();
     include '../config/koneksi.php';
     if (!isset($_SESSION['id_user'])) {
         //jika belum login jangan lanjut..

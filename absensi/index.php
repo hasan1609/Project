@@ -1,8 +1,8 @@
 <?php
 session_start();
 $header = 'absensi';
-include '../config/koneksi.php';
 include 'akses.php';
+include '../config/koneksi.php';
 include '../layout/header.php';
 ?>
 

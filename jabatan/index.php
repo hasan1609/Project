@@ -2,6 +2,7 @@
 session_start();
 $header = 'jabatan';
 include '../config/koneksi.php';
+include 'akses.php';
 include '../layout/header.php';
 ?>
 
