@@ -1,4 +1,5 @@
 <?php
+session_start();
 $header = 'jabatan';
 include '../config/koneksi.php';
 include 'akses.php';

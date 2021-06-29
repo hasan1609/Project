@@ -1,4 +1,5 @@
 <?php
+session_start();
 $header = 'karyawan';
 include "../config/koneksi.php";
 include 'akses.php';

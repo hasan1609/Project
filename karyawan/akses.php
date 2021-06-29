@@ -1,4 +1,5 @@
     <?php
+    session_start();
     if (!isset($_SESSION['id_user'])) {
         //jika belum login jangan lanjut..
         header("Location :../index.php");
