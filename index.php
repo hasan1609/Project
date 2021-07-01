@@ -36,10 +36,10 @@
                             <div class="col-lg-6 d-none d-lg-block">
                                 <img src="Image/default.png" alt="">
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-6" style="margin: 50px auto;">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome</h1>
+                                        <h1 class="h3 text-gray-900 mb-4">Welcome</h1>
                                     </div>
                                     <?php
                                     if (isset($_GET['pesan'])) {
@@ -71,7 +71,6 @@
                                         </div>
                                         <input class="btn btn-primary btn-user btn-block" type="submit" name="login" value="Login">
                                         </input>
-                                        <hr>
                                     </form>
                                     <hr>
                                 </div>

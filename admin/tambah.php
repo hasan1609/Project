@@ -1,4 +1,6 @@
 <?php
+session_start();
+include 'akses.php';
 include '../config/koneksi.php';
 include '../layout/header.php'; ?>
 

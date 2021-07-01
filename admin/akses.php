@@ -5,7 +5,7 @@
     // }
 
     //cek level user
-    if ($_SESSION['role'] != "superadmin" and $_SESSION['role'] != "admin") {
-        header("Location: ../index.php?ref=harap_login"); //jika bukan admin jangan lanjut
+    if ($_SESSION['role'] != "superadmin") {
+        header("Location:../index.php?ref=harap_login"); //jika bukan admin jangan lanjut
     }
     ?>

@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'akses.php';
 include '../layout/header.php';
 ?>
 

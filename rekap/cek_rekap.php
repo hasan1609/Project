@@ -1,5 +1,5 @@
 <?php include '../config/koneksi.php';
-include 'akses.php';
+
 //deklarasi variable absen
 $keterangan_alpha = 0;
 $keterangan_izin = 0;

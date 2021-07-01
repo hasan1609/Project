@@ -32,7 +32,7 @@ include '../layout/header.php';
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $count1; ?></div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            <i class="fas fa-handshake fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@ include '../layout/header.php';
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $count2; ?></div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                            <i class="fas fa-users fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -84,7 +84,7 @@ include '../layout/header.php';
                                 </div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                <i class="fas fa-user fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
