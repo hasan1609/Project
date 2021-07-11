@@ -82,7 +82,6 @@ include '../layout/header.php';
                                     while ($value = mysqli_fetch_array($data)) {
                                     ?>
                                         <tr>
-                                            <input type="hidden" value="<?= $value['kd_jabatan']; ?>" name="kd_jabatan">
                                             <td><?= $no++; ?></td>
                                             <td><?= $value['nama']; ?></td>
                                             <td><?= $value['nama_jabatan']; ?></td>
