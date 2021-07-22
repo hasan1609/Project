@@ -91,7 +91,7 @@ $no = 1 + $halaman_awal;
                                 <td><?= $value['alamat']; ?></td>
                                 <td><?= $value['nama_jabatan']; ?></td>
                                 <td>
-                                    <a href="detail.php?nik=<?= $value['nik']; ?>" class="btn btn-primary btn-circle btn-sm">
+                                    <a href="detail.php?nik=<?= $value['id_karyawan']; ?>" class="btn btn-primary btn-circle btn-sm">
                                         <i class="fa fa-eye"></i>
                                     </a>
                                     <a href="edit.php?id=<?= $value['id_karyawan']; ?>" class="btn btn-info btn-circle btn-sm">

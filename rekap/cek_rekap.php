@@ -19,7 +19,20 @@ $nama_bulan = [
 
 <body style="margin: 30px;">
 
-
+    <div class="grid-container" style="
+  display: grid;
+  grid-template-columns: 160px auto;
+">
+        <div class="grid-item">
+            <img src="../Image/default.png" alt="" width="150px">
+        </div>
+        <div class="grid-item">
+            <p style="text-align: center; margin: 15px 5px 5px 0 ; font-size: 20pt;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam voluptatum enim dolore temporibus dolorum ducimus dolor quibusdam suscipit excepturi. Ullam quo nulla officiis labore et adipisci eos inventore rem error.</p>
+        </div>
+    </div>
+    <hr color="black">
+    <hr color="black" style="margin-bottom: 20px;">
+    <h2 style="text-align: center;">Laporan Absensi PT SEMBURAT Perbulan</h2>
     <table cellspacing="0" style="padding: 2px; width: 100%; border: solid 2px #000000; font-size: 12pt;">
         <tr>
             <th rowspan="2" style="width: 4%; border: solid 1px #000000;">No</th>

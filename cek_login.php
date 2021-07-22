@@ -15,7 +15,7 @@ if (isset($_POST['login'])) {
         }
         if ($_SESSION['role'] == "admin") {
             $_SESSION['status'] = "login";
-            Header("location: absensi/index.php");
+            Header("location: dashboard/index.php");
         } else if ($_SESSION['role'] == "superadmin") {
             $_SESSION['status'] = "login";
             Header("location: dashboard/index.php");
