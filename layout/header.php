@@ -132,13 +132,24 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
+
+                    <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="../surat/index.php">
+                                    <i class="fas fa-cog fa-faw text-gray-600"></i>
+                                    <span class="text-gray-600">&nbsp Setting SP</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <?php if ($_SESSION['role'] != "admin") { ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="../admin/index.php">
-                                    <i class="fas fa-plus fa-faw text-gray-600"></i>
-                                    <span class="font-weight-bold text-gray-600"> &ensp;Admin </span>
+                                    <i class="fa fa-plus fa-faw text-gray-600"></i>
+                                    <span class="text-gray-600"> &nbsp Admin </span>
                                 </a>
                             </li>
                         <?php } ?>
@@ -153,11 +164,10 @@
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <a class="dropdown-item" href="../logout.php?id=<?= $_SESSION['id_user']; ?>">
-                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Logout
-                                    </a>
+                                <a class="dropdown-item" href="../logout.php?id=<?= $_SESSION['id_user']; ?>">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
                                 </a>
                             </div>
                         </li>

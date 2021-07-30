@@ -59,6 +59,9 @@
 <!-- Page level custom scripts -->
 <script src="../js/demo/datatables-demo.js"></script>
 
+<!-- ckeditor -->
+<script src="../vendor/ckeditor/ckeditor.js"></script>
+
 <script type="text/javascript">
     function checkAll(ele) {
         var checkboxes = document.getElementsByTagName('input');
