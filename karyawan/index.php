@@ -4,30 +4,7 @@ $header = 'karyawan';
 include '../config/koneksi.php';
 include 'akses.php';
 include '../layout/header.php';
-$batas = 4;
-$halaman = isset($_GET['halaman']) ? (int)$_GET['halaman'] : 1;
-$halaman_awal = ($halaman > 1) ? ($halaman * $batas) - $batas : 0;
 
-$previous = $halaman - 1;
-$next = $halaman + 1;
-
-$data = mysqli_query($koneski, "SELECT * FROM karyawan");
-$jumlah_data = mysqli_num_rows($data);
-$total_halaman = ceil($jumlah_data / $batas);
-
-// membatasi tampilan page
-$jumlah_page = 2;
-if ($halaman_awal > $jumlah_page) {
-    $start_no = $halaman_ - $jumlah_page;
-} else {
-    $start_no = 1;
-}
-
-if ($halaman < $jumlah_data - $jumlah_page) {
-    $end_no = $halaman + $jumlah_page;
-} else {
-    $end_no = $jumlah_data;
-}
 
 if (isset($_POST['cari'])) {
     $cari = $_POST['nama'];
@@ -36,7 +13,7 @@ if (isset($_POST['cari'])) {
 } else {
     $query = mysqli_query($koneski, "SELECT * FROM karyawan INNER JOIN jabatan ON karyawan.kd_jabatan = jabatan.kd_jabatan");
 }
-$no = 1 + $halaman_awal;
+$no = 1;
 ?>
 
 <!-- Begin Page Content -->
@@ -87,7 +64,7 @@ $no = 1 + $halaman_awal;
                                 <td><?= $no++; ?></td>
                                 <td><img src="../Image/<?= $value['foto']; ?>" style="width: 100px;"></td>
                                 <td><?= $value['nik']; ?></td>
-                                <td><?= $value['nama']; ?></td>
+                                <td><?= strtoupper($value['nama']); ?></td>
                                 <td><?= $value['alamat']; ?></td>
                                 <td><?= $value['nama_jabatan']; ?></td>
                                 <td>

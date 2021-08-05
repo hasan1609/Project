@@ -52,7 +52,7 @@ include '../layout/header.php';
                             <tr>
                                 <td><?php echo $no++; ?></td>
                                 <td><?php echo $value['kd_jabatan']; ?></td>
-                                <td><?php echo $value['nama_jabatan']; ?></td>
+                                <td><?php echo strtoupper($value['nama_jabatan']); ?></td>
                                 <td>
                                     <a href="edit.php?id=<?= $value['kd_jabatan']; ?>" class="btn btn-info btn-circle btn-sm">
                                         <i class="fa fa-edit"></i>

@@ -62,6 +62,13 @@
 <!-- ckeditor -->
 <script src="../vendor/ckeditor/ckeditor.js"></script>
 
+<!-- search dropdown -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+<script type="text/javascript">
+    $('.chosen').chosen();
+</script>
+
+
 <script type="text/javascript">
     function checkAll(ele) {
         var checkboxes = document.getElementsByTagName('input');

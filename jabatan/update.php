@@ -4,7 +4,7 @@
   include "../config/koneksi.php";
 
   $kd = $_POST['kd-jabatan'];
-  $nama = $_POST['nama'];
+  $nama = strtoupper($_POST['nama']);
   if (isset($_POST['upload'])) {
 
     $query = mysqli_query($koneski, "UPDATE jabatan SET nama_jabatan ='$nama' WHERE kd_jabatan='$kd'");

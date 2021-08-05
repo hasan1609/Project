@@ -83,7 +83,7 @@ include '../layout/header.php';
                                     ?>
                                         <tr>
                                             <td><?= $no++; ?></td>
-                                            <td><?= $value['nama']; ?></td>
+                                            <td><?= strtoupper($value['nama']); ?></td>
                                             <td><?= $value['nama_jabatan']; ?></td>
                                             <td><input type="checkbox" id="checkbox" name="id_karyawan[]" value="<?= $value['id_karyawan']; ?>" /></td>
                                             <?php $query_tampil_tanggal = mysqli_query($koneski, "SELECT * FROM absensi WHERE id_karyawan=$value[id_karyawan]

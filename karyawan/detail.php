@@ -131,7 +131,6 @@ include '../layout/header.php' ?>
                         $keterangan_alpha = 0;
                         $keterangan_izin = 0;
                         $keterangan_hadir = 0;
-                        $date = date('Y');
                         $jml_absen = mysqli_query($koneski, "SELECT * FROM absensi WHERE id_karyawan = '$nik' AND CONCAT(YEAR(tgl_absen)) = CONCAT(YEAR(NOW()))");
                         while ($data_jml = mysqli_fetch_array($jml_absen)) {
                             if ($data_jml['keterangan'] == 'h') {

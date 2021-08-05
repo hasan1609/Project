@@ -2,7 +2,7 @@
 session_start();
 include '../config/koneksi.php';
 $kd = $_POST['kd-jabatan'];
-$nama = $_POST['nama'];
+$nama = strtoupper($_POST['nama']);
 
 // proses Input data
 if (isset($_POST['upload'])) {

@@ -8,6 +8,19 @@ include '../layout/header.php';
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
+    <?php
+    if (isset($_SESSION['status'])) { ?>
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <strong><?= $_SESSION['status']; ?></strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <?php
+        unset($_SESSION['status']);
+    }
+    ?>
+
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>

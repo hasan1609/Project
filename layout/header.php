@@ -18,6 +18,9 @@
     <!-- Custom styles for this template -->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
+    <!-- search dropdown -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
+
     <!-- Custom styles for this page -->
     <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
@@ -107,6 +110,20 @@
                     <i class="fas fa-fw fa-print"></i>
                     <span>Rekap Absen</span></a>
             </li>
+            <li class="nav-item <?php if ($header == "surat") {
+                                    echo "active";
+                                } ?>">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-envelope"></i>
+                    <span>Surat Peringatan</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="../surat/data_surat.php">Daftar Surat</a>
+                        <a class="collapse-item" href="../surat/index.php">Data SP</a>
+                    </div>
+                </div>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -136,9 +153,9 @@
                     <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="../surat/index.php">
+                                <a class="nav-link" href="../profil/index.php">
                                     <i class="fas fa-cog fa-faw text-gray-600"></i>
-                                    <span class="text-gray-600">&nbsp Setting SP</span>
+                                    <span class="text-gray-600">&nbsp Setting</span>
                                 </a>
                             </li>
                         </ul>

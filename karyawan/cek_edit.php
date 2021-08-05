@@ -5,7 +5,7 @@ include '../config/koneksi.php';
 $id = $_POST['id'];
 $jabatan = $_POST['jabatan'];
 $nik = $_POST['nik'];
-$nama = $_POST['nama'];
+$nama = strtolower($_POST['nama']);
 $ttl = $_POST['ttl'];
 $alamat = $_POST['alamat'];
 $tlp = $_POST['tlp'];

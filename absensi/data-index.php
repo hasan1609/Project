@@ -126,11 +126,12 @@ $keterangan_libur = 0;
                                     $jk = "P";
                                 } ?>
                                 <tr>
-                                    <td><input type="checkbox" name="id_karyawan[]" value="<?PHP echo $data['id_karyawan']; ?>" /></td>
-                                    <td><?php echo $data['nama']; ?></td>
+                                    <td><?php echo $no++; ?></td>
+                                    <td><?php echo strtoupper($data['nama']); ?></td>
                                     <td><?php echo $data['nama_jabatan']; ?></td>
-                                    <td><?php echo $jk ?></td>
+                                    <td><?php echo $jk; ?></td>
                                     <?php
+
                                     //perulangan kehadiran sesuai tanggal
                                     $nomor2 = 1;
                                     //perulangan kehadiran sesuai tanggal
@@ -139,8 +140,7 @@ $keterangan_libur = 0;
                                     } else {
                                         $cari_bulann = date('m');
                                         $tahunn = date('Y');
-                                        $query_tampil_tanggal = mysqli_query($koneski, "SELECT * FROM absensi WHERE id_karyawan=$data[id_karyawan]
-                                                                and tgl_absen like '%$tahunn-$cari_bulann%' ORDER BY tgl_absen ASC;");
+                                        $query_tampil_tanggal = mysqli_query($koneski, "SELECT * FROM absensi WHERE id_karyawan=$data[id_karyawan] and tgl_absen like '%$tahunn-$cari_bulann%' ORDER BY tgl_absen ASC;");
                                     }
                                     while ($data_tanggal = mysqli_fetch_array($query_tampil_tanggal)) {
                                         //mengabil tanggal
@@ -152,7 +152,7 @@ $keterangan_libur = 0;
                                         for ($nomor = $nomor2; $nomor <= $ambil_tanggal[2]; $nomor++) {
                                             if ($nomor == $ambil_tanggal[2]) {
                                                 if ($data_tanggal['keterangan'] == 'h') {
-                                                    echo '<td><i class="fa fa-check" aria-hidden="true"></i></span></td>';
+                                                    echo '<td><i class="fa fa-check" aria-hidden="true"></i></td>';
                                                 } else if ($data_tanggal['keterangan'] == 'l') {
                                                     echo '<td style="background-color: red;"></td>';
                                                 } else {
@@ -183,9 +183,13 @@ $keterangan_libur = 0;
                                     }
                                     //tampilan rekap absen
                                     echo "<td>$keterangan_hadir</td>
-                                                            <td>$keterangan_alpha</td>
-                                                            <td>$keterangan_izin</td>
-                                                            <td>$keterangan_libur</td>";
+                                    <td>$keterangan_alpha</td>
+                                    <td>$keterangan_izin</td>
+                                    <td>$keterangan_libur</td>";
+                                    $keterangan_alpha = 0;
+                                    $keterangan_izin = 0;
+                                    $keterangan_hadir = 0;
+                                    $keterangan_libur = 0;
                                     ?>
                                 </tr>
                             <?php } ?>
