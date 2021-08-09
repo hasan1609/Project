@@ -6,13 +6,9 @@ include 'akses.php';
 include '../layout/header.php';
 
 
-if (isset($_POST['cari'])) {
-    $cari = $_POST['nama'];
-    $filter = mysqli_real_escape_string($koneski, $_POST['jabatan']);
-    $query = mysqli_query($koneski, "SELECT * FROM karyawan INNER JOIN jabatan ON karyawan.kd_jabatan = jabatan.kd_jabatan WHERE nama like '%$cari%' OR karyawan.kd_jabatan = '$filter'");
-} else {
-    $query = mysqli_query($koneski, "SELECT * FROM karyawan INNER JOIN jabatan ON karyawan.kd_jabatan = jabatan.kd_jabatan");
-}
+
+$query = mysqli_query($koneski, "SELECT * FROM karyawan INNER JOIN jabatan ON karyawan.kd_jabatan = jabatan.kd_jabatan ORDER BY karyawan.kd_jabatan ASC");
+
 $no = 1;
 ?>
 
@@ -45,7 +41,7 @@ $no = 1;
             }
             ?>
             <div class="table-responsive">
-                <table class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
+                <table class="table table-bordered" width="100%" id="dataKaryawan" name="dataKaryawan" cellspacing="0">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -90,3 +86,51 @@ $no = 1;
 <!-- /.container-fluid -->
 
 <?php include '../layout/footer.php'; ?>
+<script>
+    $(document).ready(function() {
+        var table = $('#dataKaryawan').DataTable({
+            lengthChange: false,
+            dom: 'Bfrtip',
+            buttons: [{
+                    extend: 'print',
+                    customize: function(win) {
+                        $(win.document.body)
+                            .css('font-size', '12pt');
+
+
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    },
+                    title: 'Data Karyawan',
+                    exportOptions: {
+                        columns: [0, 2, 3, 4, 5]
+                    }
+                },
+                {
+                    extend: 'excel',
+                    orientation: 'potrait',
+                    pageSize: 'a4',
+                    title: 'Data Karyawan',
+                    exportOptions: {
+                        columns: [0, 2, 3, 4, 5]
+                    }
+                },
+                {
+                    extend: 'csv',
+                    orientation: 'potrait',
+                    pageSize: 'a4',
+                    title: 'Data Karyawan',
+                    exportOptions: {
+                        columns: [0, 2, 3, 4, 5]
+                    }
+                }
+            ],
+            columnDefs: [{
+                "searchable": false,
+                "orderable": false,
+                "targets": 6
+            }]
+        });
+    });
+</script>

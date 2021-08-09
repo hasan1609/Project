@@ -11,7 +11,7 @@ include '../layout/header.php' ?>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Data Absensi Pertahun
-                <button class="btn btn-sm btn-outline-primary float-right" data-toggle="modal" data-target="#modalcetak"><i class="fa fa-print" aria-hidden="true"></i> Cetak Surat</button>
+                <a href="cetak_surat.php" class="btn btn-sm btn-outline-primary float-right"><i class="fa fa-print" aria-hidden="true"></i> Cetak Surat</a>
             </h6>
         </div>
         <div class="card-body">
@@ -82,49 +82,7 @@ include '../layout/header.php' ?>
 </div>
 
 <!-- modal -->
-<div id="modalcetak" class="modal fade" role="dialog" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalcetak">Cetak Surat</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form class="" action="" method="post" enctype="multipart/form-data">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <p>Pilih Surat</p>
-                        <select class="form-control" aria-label=".form-select-sm example" name="surat" required>
-                            <option>---Pilih Surat---</option>
-                            <?php
-                            $data = mysqli_query($koneski, "SELECT * FROM template");
-                            while ($value = mysqli_fetch_array($data)) {
-                            ?>
-                                <option value="<?= $value['id']; ?>"><?= $value['nama']; ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <p>Pilih Karyawan</p>
-                        <select class="form-control" name="karyawan" required>
-                            <option>---Pilih Karyawan---</option>
-                            <?php
-                            $data = mysqli_query($koneski, "SELECT * FROM karyawan");
-                            while ($value = mysqli_fetch_array($data)) {
-                            ?>
-                                <option value="<?= $value['id']; ?>"><?= $value['nama']; ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <input type="submit" class="btn btn-primary" name="upload" value="Simpan"></input>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+
 
 <!-- /.container-fluid -->
 <?php include '../layout/footer.php' ?>

@@ -55,7 +55,7 @@ include '../layout/header.php';
                     </div>
                 </div>
                 <div class="col-xs-3">
-                    <input class="btn btn-primary" type="submit" name="cari">
+                    <input class="btn btn-primary" type="submit" name="cari" value="Cari">
                 </div>
             </form>
         </div>
@@ -84,10 +84,11 @@ include '../layout/header.php';
                                 <td><?php echo  "$_GET[tahun]-$_GET[bulan]"; ?></td>
                                 <td><?= $data_jabatan['nama_jabatan']; ?></td>
                                 <td>
-                                    <a href="cek_rekap.php?bulan=<?php echo "$_GET[bulan]&tahun=$_GET[tahun]&jabatan=$_GET[jabatan]"; ?>" target="_blank">
+                                    <a href="exel.php?bulan=<?php echo "$_GET[bulan]&tahun=$_GET[tahun]&jabatan=$_GET[jabatan]"; ?>" target="_blank">
+                                        <i class="fa fa-print"></i> Excel</a>
+                                    <a href="cek_rekap.php?bulan=<?php echo "$_GET[bulan]&tahun=$_GET[tahun]&jabatan=$_GET[jabatan]"; ?>" style="margin-left: 10px;" target="_blank">
                                         <i class="fa fa-print"></i> PDF</a>
-                                <?php
-                            } ?>
+                                <?php } ?>
                                 </td>
                         </tr>
                     </tbody>

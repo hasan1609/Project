@@ -90,15 +90,15 @@ $keterangan_libur = 0;
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <?php if (isset($_GET['carinama'])) { ?>
-                <h5><?php echo "$_GET[bulan]-$_GET[tahun]"; ?></h5>
+                <h5 id="tgl_cetak"><?php echo "$_GET[bulan]-$_GET[tahun]"; ?></h5>
             <?php } else { ?>
-                <h5><?php echo date('F-y'); ?></h5>
+                <h5 id="tgl_cetak"><?php echo date('F-y'); ?></h5>
             <?PHP } ?>
         </div>
         <div class="card-body">
             <div class="widget-content">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped">
+                    <table class="table table-bordered table-striped" id="absensi">
                         <thead>
                             <tr>
                                 <th rowspan="2">No</th>

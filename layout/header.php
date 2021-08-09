@@ -19,10 +19,13 @@
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- search dropdown -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
     <!-- Custom styles for this page -->
-    <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <!-- <link href="../vendor/datatable/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+    <link href="../vendor/DataTables/datatables.min.css" rel="stylesheet">
+
+
 
 </head>
 

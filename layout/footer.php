@@ -54,7 +54,8 @@
 
 <!-- Page level plugins -->
 <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<!-- <script src="../vendor/datatable/dataTables.bootstrap4.min.js"></script> -->
+<script src="../vendor/DataTables/datatables.min.js"></script>
 
 <!-- Page level custom scripts -->
 <script src="../js/demo/datatables-demo.js"></script>
@@ -63,11 +64,10 @@
 <script src="../vendor/ckeditor/ckeditor.js"></script>
 
 <!-- search dropdown -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 <script type="text/javascript">
-    $('.chosen').chosen();
+    $('selectpicker').selectpicker();
 </script>
-
 
 <script type="text/javascript">
     function checkAll(ele) {

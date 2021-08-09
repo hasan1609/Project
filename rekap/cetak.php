@@ -1,6 +1,5 @@
 <?php
 include '../config/koneksi.php';
-include 'akses.php';
 require '../vendor/autoload.php';
 
 use Dompdf\Dompdf;
