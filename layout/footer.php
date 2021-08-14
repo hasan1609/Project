@@ -55,10 +55,21 @@
 <!-- Page level plugins -->
 <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
 <!-- <script src="../vendor/datatable/dataTables.bootstrap4.min.js"></script> -->
-<script src="../vendor/DataTables/datatables.min.js"></script>
+<!-- <script src="../vendor/DataTables/datatables.min.js"></script> -->
+
+<script type="text/javascript" src="../vendor/DataTables/JSZip-2.5.0/jszip.min.js"></script>
+<script type="text/javascript" src="../vendor/DataTables/pdfmake-0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="../vendor/DataTables/pdfmake-0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="../vendor/DataTables/DataTables-1.10.25/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../vendor/DataTables/DataTables-1.10.25/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript" src="../vendor/DataTables/Buttons-1.7.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="../vendor/DataTables/Buttons-1.7.1/js/buttons.bootstrap4.min.js"></script>
+<script type="text/javascript" src="../vendor/DataTables/Buttons-1.7.1/js/buttons.colVis.min.js"></script>
+<script type="text/javascript" src="../vendor/DataTables/Buttons-1.7.1/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="../vendor/DataTables/Buttons-1.7.1/js/buttons.print.min.js"></script>
 
 <!-- Page level custom scripts -->
-<script src="../js/demo/datatables-demo.js"></script>
+<!-- <script src="../js/demo/datatables-demo.js"></script> -->
 
 <!-- ckeditor -->
 <script src="../vendor/ckeditor/ckeditor.js"></script>
@@ -109,6 +120,106 @@
                 $(this).remove();
             });
         }, 4000);
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable({
+            columnDefs: [{
+                "searchable": false,
+                "orderable": false,
+                "targets": 0
+            }],
+            "order": [1, "asc"]
+        });
+    });
+    // $(document).ready(function() {
+    //     $('#absensi').DataTable({
+    //         lengthChange: false,
+    //         dom: 'Bfrtip',
+    //         buttons: [{
+    //                 extend: 'pdf',
+    //                 customize: function(win) {
+    //                     $(win.document.body)
+    //                         .css('font-size', '12pt');
+
+
+    //                     $(win.document.body).find('table')
+    //                         .addClass('compact')
+    //                         .css('font-size', 'inherit');
+    //                 },
+    //                 title: 'Data Karyawan',
+    //                 orientation: 'landscape',
+    //                 pageSize: 'LEGAL'
+
+    //             },
+    //             {
+    //                 extend: 'excel',
+    //                 title: 'Data Karyawan'
+    //             },
+    //             {
+    //                 extend: 'csv',
+    //                 title: 'Data Karyawan'
+    //             }
+    //         ],
+    //         columnDefs: [{
+    //             "searchable": false,
+    //             "orderable": false,
+    //             "targets": 6
+    //         }]
+    //     });
+    //     table.buttons().container()
+    //         .appendTo('#example_wrapper .col-md-6:eq(0)');
+    // });
+</script>
+<script>
+    $(document).ready(function() {
+        var table = $('#dataKaryawan').DataTable({
+            lengthChange: false,
+            dom: 'Bfrtip',
+            buttons: [{
+                    extend: 'print',
+                    customize: function(win) {
+                        $(win.document.body)
+                            .css('font-size', '12pt');
+
+
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    },
+                    title: 'Data Karyawan',
+                    exportOptions: {
+                        columns: [0, 2, 3, 4, 5]
+                    }
+                },
+                {
+                    extend: 'excel',
+                    orientation: 'potrait',
+                    pageSize: 'a4',
+                    title: 'Data Karyawan',
+                    exportOptions: {
+                        columns: [0, 2, 3, 4, 5]
+                    }
+                },
+                {
+                    extend: 'csv',
+                    orientation: 'potrait',
+                    pageSize: 'a4',
+                    title: 'Data Karyawan',
+                    exportOptions: {
+                        columns: [0, 2, 3, 4, 5]
+                    }
+                }
+            ],
+            columnDefs: [{
+                "searchable": false,
+                "orderable": false,
+                "targets": 6
+            }]
+        });
+        table.buttons().container()
+            .appendTo('#example_wrapper .col-md-6:eq(0)');
     });
 </script>
 </body>

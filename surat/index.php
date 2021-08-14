@@ -16,7 +16,7 @@ include '../layout/header.php' ?>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
+                <table class="table table-bordered table-striped" width="100%" id="dataTable" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Nama</th>
@@ -65,16 +65,6 @@ include '../layout/header.php' ?>
                     </tbody>
                 </table>
             </div>
-
-            <!-- <div class="form-group">
-                <p>Kode Surat</p>
-                <input type="text" class="form-control form-control-user" id="kode" name="kode">
-            </div>
-            <div class="form-group">
-                <p>Isi Surat</p>
-                <textarea class="ckeditor" id="isi" name="isi"></textarea>
-            </div>
-            <button class="btn btn-primary" type="submit" name="upload">Simpan</button> -->
         </div>
     </div>
 

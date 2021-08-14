@@ -4,10 +4,10 @@
  *
  * To rebuild or modify this file with the latest versions of the included
  * software please visit:
- *   https://datatables.net/download/#bs4/jszip-2.5.0/pdfmake-0.1.36/dt-1.10.25/b-1.7.1/b-html5-1.7.1
+ *   https://datatables.net/download/#bs4/jszip-2.5.0/pdfmake-0.1.36/dt-1.10.25/b-1.7.1/b-colvis-1.7.1/b-html5-1.7.1/b-print-1.7.1
  *
  * Included libraries:
- *   JSZip 2.5.0, pdfmake 0.1.36, DataTables 1.10.25, Buttons 1.7.1, HTML5 export 1.7.1
+ *   JSZip 2.5.0, pdfmake 0.1.36, DataTables 1.10.25, Buttons 1.7.1, Column visibility 1.7.1, HTML5 export 1.7.1, Print view 1.7.1
  */
 
 @charset "UTF-8";

@@ -94,107 +94,111 @@ $keterangan_libur = 0;
             <?php } else { ?>
                 <h5 id="tgl_cetak"><?php echo date('F-y'); ?></h5>
             <?PHP } ?>
+            <button class="btn btn-sm btn-outline-primary float-left" onclick="return printArea('area')"><i class="fa fa-print" aria-hidden="true"></i> Cetak</button>
+
         </div>
         <div class="card-body">
             <div class="widget-content">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped" id="absensi">
-                        <thead>
-                            <tr>
-                                <th rowspan="2">No</th>
-                                <th rowspan='2'>Nama</th>
-                                <th rowspan="2">Jabatan</th>
-                                <th rowspan='2'>L/P</th>
-                                <?php for ($tanggal_table = 1; $tanggal_table <= 31; $tanggal_table++) {
-                                    echo "<th rowspan='2'>$tanggal_table</th>";
-                                } ?>
-                                <th colspan="4">Jumlah</th>
-                            </tr>
-                            <tr>
-                                <th>H</th>
-                                <th>A</th>
-                                <th>I</th>
-                                <th>L</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $no = 1;
-                            while ($data = mysqli_fetch_array($query_tampil)) {
-                                if ($data['jk'] == "Laki-laki") {
-                                    $jk = "L";
-                                } else {
-                                    $jk = "P";
-                                } ?>
+                    <div id="area">
+                        <table class="table table-bordered table-striped" id="absensi">
+                            <thead>
                                 <tr>
-                                    <td><?php echo $no++; ?></td>
-                                    <td><?php echo strtoupper($data['nama']); ?></td>
-                                    <td><?php echo $data['nama_jabatan']; ?></td>
-                                    <td><?php echo $jk; ?></td>
-                                    <?php
-
-                                    //perulangan kehadiran sesuai tanggal
-                                    $nomor2 = 1;
-                                    //perulangan kehadiran sesuai tanggal
-                                    if (isset($_GET['bulan'])) {
-                                        $query_tampil_tanggal = mysqli_query($koneski, "SELECT * FROM absensi WHERE id_karyawan=$data[id_karyawan] and tgl_absen like '%$_GET[tahun]-$cari_bulan%' ORDER BY tgl_absen ASC;");
+                                    <th rowspan="2">No</th>
+                                    <th rowspan='2'>Nama</th>
+                                    <th rowspan="2">Jabatan</th>
+                                    <th rowspan='2'>L/P</th>
+                                    <?php for ($tanggal_table = 1; $tanggal_table <= 31; $tanggal_table++) {
+                                        echo "<th rowspan='2'>$tanggal_table</th>";
+                                    } ?>
+                                    <th colspan="4">Jumlah</th>
+                                </tr>
+                                <tr>
+                                    <th>H</th>
+                                    <th>A</th>
+                                    <th>I</th>
+                                    <th>L</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $no = 1;
+                                while ($data = mysqli_fetch_array($query_tampil)) {
+                                    if ($data['jk'] == "Laki-laki") {
+                                        $jk = "L";
                                     } else {
-                                        $cari_bulann = date('m');
-                                        $tahunn = date('Y');
-                                        $query_tampil_tanggal = mysqli_query($koneski, "SELECT * FROM absensi WHERE id_karyawan=$data[id_karyawan] and tgl_absen like '%$tahunn-$cari_bulann%' ORDER BY tgl_absen ASC;");
-                                    }
-                                    while ($data_tanggal = mysqli_fetch_array($query_tampil_tanggal)) {
-                                        //mengabil tanggal
-                                        $ambil_tanggal = explode("-", $data_tanggal['tgl_absen']);
-                                        //merubah menjadi tanggal jadi integer
-                                        $ambil_tanggal[2] = (int)$ambil_tanggal[2];
+                                        $jk = "P";
+                                    } ?>
+                                    <tr>
+                                        <td><?php echo $no++; ?></td>
+                                        <td><?php echo strtoupper($data['nama']); ?></td>
+                                        <td><?php echo $data['nama_jabatan']; ?></td>
+                                        <td><?php echo $jk; ?></td>
+                                        <?php
 
                                         //perulangan kehadiran sesuai tanggal
-                                        for ($nomor = $nomor2; $nomor <= $ambil_tanggal[2]; $nomor++) {
-                                            if ($nomor == $ambil_tanggal[2]) {
-                                                if ($data_tanggal['keterangan'] == 'h') {
-                                                    echo '<td><i class="fa fa-check" aria-hidden="true"></i></td>';
-                                                } else if ($data_tanggal['keterangan'] == 'l') {
-                                                    echo '<td style="background-color: red;"></td>';
+                                        $nomor2 = 1;
+                                        //perulangan kehadiran sesuai tanggal
+                                        if (isset($_GET['bulan'])) {
+                                            $query_tampil_tanggal = mysqli_query($koneski, "SELECT * FROM absensi WHERE id_karyawan=$data[id_karyawan] and tgl_absen like '%$_GET[tahun]-$cari_bulan%' ORDER BY tgl_absen ASC;");
+                                        } else {
+                                            $cari_bulann = date('m');
+                                            $tahunn = date('Y');
+                                            $query_tampil_tanggal = mysqli_query($koneski, "SELECT * FROM absensi WHERE id_karyawan=$data[id_karyawan] and tgl_absen like '%$tahunn-$cari_bulann%' ORDER BY tgl_absen ASC;");
+                                        }
+                                        while ($data_tanggal = mysqli_fetch_array($query_tampil_tanggal)) {
+                                            //mengabil tanggal
+                                            $ambil_tanggal = explode("-", $data_tanggal['tgl_absen']);
+                                            //merubah menjadi tanggal jadi integer
+                                            $ambil_tanggal[2] = (int)$ambil_tanggal[2];
+
+                                            //perulangan kehadiran sesuai tanggal
+                                            for ($nomor = $nomor2; $nomor <= $ambil_tanggal[2]; $nomor++) {
+                                                if ($nomor == $ambil_tanggal[2]) {
+                                                    if ($data_tanggal['keterangan'] == 'h') {
+                                                        echo '<td><i class="fa fa-check" aria-hidden="true"></i></td>';
+                                                    } else if ($data_tanggal['keterangan'] == 'l') {
+                                                        echo '<td style="background-color: red;"></td>';
+                                                    } else {
+                                                        echo "<td><b>" . strtoupper($data_tanggal['keterangan']) . "</b></td>";
+                                                    }
                                                 } else {
-                                                    echo "<td><b>" . strtoupper($data_tanggal['keterangan']) . "</b></td>";
+                                                    echo "<td></td>";
                                                 }
-                                            } else {
-                                                echo "<td></td>";
                                             }
+                                            //meng rekap bulannan
+                                            if ($data_tanggal['keterangan'] == 'h') {
+                                                $keterangan_hadir++;
+                                            } else if ($data_tanggal['keterangan'] == 'a') {
+                                                $keterangan_alpha++;
+                                            } else if ($data_tanggal['keterangan'] == 'i') {
+                                                $keterangan_izin++;
+                                            } else if ($data_tanggal['keterangan'] == 'l') {
+                                                $keterangan_libur++;
+                                            }
+                                            $nomor2 = $ambil_tanggal[2] + 1;
+                                            $sisa_td = 31 - $nomor2;
                                         }
-                                        //meng rekap bulannan
-                                        if ($data_tanggal['keterangan'] == 'h') {
-                                            $keterangan_hadir++;
-                                        } else if ($data_tanggal['keterangan'] == 'a') {
-                                            $keterangan_alpha++;
-                                        } else if ($data_tanggal['keterangan'] == 'i') {
-                                            $keterangan_izin++;
-                                        } else if ($data_tanggal['keterangan'] == 'l') {
-                                            $keterangan_libur++;
+                                        if (isset($sisa_td) != true) {
+                                            $sisa_td = 30;
                                         }
-                                        $nomor2 = $ambil_tanggal[2] + 1;
-                                        $sisa_td = 31 - $nomor2;
-                                    }
-                                    if (isset($sisa_td) != true) {
-                                        $sisa_td = 30;
-                                    }
-                                    for ($td = 0; $td <= $sisa_td; $td++) {
-                                        echo "<td></td>";
-                                    }
-                                    //tampilan rekap absen
-                                    echo "<td>$keterangan_hadir</td>
+                                        for ($td = 0; $td <= $sisa_td; $td++) {
+                                            echo "<td></td>";
+                                        }
+                                        //tampilan rekap absen
+                                        echo "<td>$keterangan_hadir</td>
                                     <td>$keterangan_alpha</td>
                                     <td>$keterangan_izin</td>
                                     <td>$keterangan_libur</td>";
-                                    $keterangan_alpha = 0;
-                                    $keterangan_izin = 0;
-                                    $keterangan_hadir = 0;
-                                    $keterangan_libur = 0;
-                                    ?>
-                                </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
+                                        $keterangan_alpha = 0;
+                                        $keterangan_izin = 0;
+                                        $keterangan_hadir = 0;
+                                        $keterangan_libur = 0;
+                                        ?>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <br>
             </div>
@@ -206,3 +210,12 @@ $keterangan_libur = 0;
 <?php
 include '../layout/footer.php'
 ?>
+<script type="text/javascript">
+    function printArea(area) {
+        var printPage = document.getElementById(area).innerHTML;
+        var oriPage = document.body.innerHTML;
+        document.body.innerHTML = printPage;
+        window.print();
+        document.body.innerHTML = oriPage;
+    }
+</script>

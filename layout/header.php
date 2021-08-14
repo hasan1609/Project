@@ -23,7 +23,9 @@
 
     <!-- Custom styles for this page -->
     <!-- <link href="../vendor/datatable/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
-    <link href="../vendor/DataTables/datatables.min.css" rel="stylesheet">
+    <!-- <link href="../vendor/DataTables/datatables.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" type="text/css" href="../vendor/DataTables/DataTables-1.10.25/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" type="text/css" href="../vendor/DataTables/Buttons-1.7.1/css/buttons.bootstrap4.min.css" />
 
 
 
