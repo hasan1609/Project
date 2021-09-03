@@ -51,15 +51,26 @@ include '../layout/header.php' ?>
                                 }
                                 $keterangan_alpha = 0;
                                 ?>
-                                <td style="text-align: center;">
-                                    <i class="fa fa-check" aria-hidden="true"></i><br>
-                                </td>
-                                <td style="text-align: center;">
-                                    <i class="fa fa-check" aria-hidden="true"></i><br>
-                                </td>
-                                <td style="text-align: center;">
-                                    <i class="fa fa-check" aria-hidden="true"></i><br>
-                                </td>
+                                <?php
+                                $query_sp1 = mysqli_query($koneski, "SELECT * FROM surat WHERE id_karyawan =$karyawan[id_karyawan]");
+                                while ($sp1 = mysqli_fetch_array($query_sp1)) {
+                                    if ($sp1['kategori_surat'] == '1') {
+                                        echo '<td><i class="fa fa-check" aria-hidden="true"></i></td>';
+                                    } else {
+                                        echo '<td></td>';
+                                    }
+                                    if ($sp1['kategori_surat'] == '2') {
+                                        echo '<td><i class="fa fa-check" aria-hidden="true"></i></td>';
+                                    } else {
+                                        echo '<td></td>';
+                                    }
+                                    if ($sp1['kategori_surat'] == '3') {
+                                        echo '<td><i class="fa fa-check" aria-hidden="true"></i></td>';
+                                    } else {
+                                        echo '<td></td>';
+                                    }
+                                }
+                                ?>
                             </tr>
                         <?php } ?>
                     </tbody>

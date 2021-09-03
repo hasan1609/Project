@@ -88,6 +88,8 @@ include '../layout/header.php';
                                         <i class="fa fa-print"></i> Excel</a>
                                     <a href="cek_rekap.php?bulan=<?php echo "$_GET[bulan]&tahun=$_GET[tahun]&jabatan=$_GET[jabatan]"; ?>" style="margin-left: 10px;" target="_blank">
                                         <i class="fa fa-print"></i> PDF</a>
+                                    <a href="cetak.php?bulan=<?php echo "$_GET[bulan]&tahun=$_GET[tahun]&jabatan=$_GET[jabatan]"; ?>" style="margin-left: 10px;" target="_blank"" style=" margin-left: 10px;" target="_blank">
+                                        <i class="fa fa-print"></i> PDF</a>
                                 <?php } ?>
                                 </td>
                         </tr>

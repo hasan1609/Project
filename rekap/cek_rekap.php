@@ -124,7 +124,6 @@ $keterangan_hadir = 0;
         </div>
     </div>
 
-    </table>
 </body>
 
 </html>

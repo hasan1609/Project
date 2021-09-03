@@ -14,7 +14,7 @@ include '../layout/header.php' ?>
                     <h6 class="m-0 font-weight-bold text-primary">Cetak Surat</h6>
                 </div>
                 <div class="card-body">
-                    <form class="" action="" method="GET" enctype="multipart/form-data">
+                    <form class="" action="" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <p>Pilih Surat</p>
                             <select class="form-control selectpicker" name="surat" required data-live-search="true">
@@ -38,13 +38,18 @@ include '../layout/header.php' ?>
                             </select>
                         </div>
                         <div class="col-xs-3">
-                            <input class="btn btn-primary" type="submit" name="carinama" value="Cetak">
+                            <p><i>*Data akan otomatis terinput jika anda menekan tombol cetak</i></p>
+                            <input class="btn btn-primary" type="submit" name="cetak" value="Cetak">
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <?php if (isset($_GET['carinama'])) { ?>
+        <?php if (isset($_POST['cetak'])) {
+            $nomor = 123323;
+            $tgl = date("d-m-y");
+            mysqli_query($koneski, "INSERT into surat(kategori_surat,no_surat,id_karyawan,tgl) VALUES ('$_POST[surat]','$nomor','$_POST[karyawan]','$tgl')")
+        ?>
 
             <div class="col-lg-9">
                 <div class="card shadow mb-4">
@@ -70,9 +75,9 @@ include '../layout/header.php' ?>
                             <hr color="black">
                             <hr color="black" style="margin-bottom: 20px;">
                             <?php
-                            $surat_query = mysqli_query($koneski, "SELECT * FROM template WHERE id = '$_GET[surat]'");
+                            $surat_query = mysqli_query($koneski, "SELECT * FROM template WHERE id like '%$_POST[surat]%'");
                             $surat = mysqli_fetch_array($surat_query);
-                            $karyawan_query = mysqli_query($koneski, "SELECT * FROM karyawan INNER JOIN jabatan ON karyawan.kd_jabatan = jabatan.kd_jabatan WHERE karyawan.id_karyawan = '$_GET[karyawan]'");
+                            $karyawan_query = mysqli_query($koneski, "SELECT * FROM karyawan INNER JOIN jabatan ON karyawan.kd_jabatan = jabatan.kd_jabatan WHERE karyawan.id_karyawan like '%$_POST[karyawan]%'");
                             $karyawan = mysqli_fetch_array($karyawan_query);
                             ?>
                             <Table>
